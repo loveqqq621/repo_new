@@ -107,7 +107,7 @@ class Event(object):
         if self.type == 1:
             if core.get_map().get_player().rect.x < FLAG_X_POS:
                 core.get_map().get_player().direction = True
-                core.get_map().get_player().set_image(6)
+                # core.get_map().get_player().set_image(6)
                 core.get_map().get_player().red_carpet_move(core)
                 core.get_map().get_player().update_image(core)
 

@@ -548,16 +548,30 @@ class Player(object):
         """
         red carpet running
         """
+        self.direction = True
+        if not self.on_ground:
+            self.y_vel += GRAVITY if self.y_vel <= MAX_FALL_SPEED else 0
 
         x = self.rect.x // 32
         y = self.rect.y // 32
+        # print(y, self.rect.y, self.rect.bottom)
         blocks = core.get_map().get_blocks_for_collision(x, y)
 
         self.rect.x += self.x_vel * 2.9
+        # self.rect.y = 
  
         self.update_x_pos(blocks)
+        
+        # if self.rect.bottom <= 160:
+        #     self.rect.bottom += self.y_vel
         self.rect.top += self.y_vel
+        # # 红毯高度
+        # else:
+            
+        # self.rect.bottom += self.y_vel
         self.update_y_pos(blocks, core)
+        # self.rect.bottom = 160
+        
         x = self.rect.x // 32
         y = self.rect.y // 32
         if self.powerLVL > 0:
@@ -566,8 +580,6 @@ class Player(object):
             if block != 0 and block.type != 'BGObject':
                 if pg.Rect(self.rect.x, self.rect.y + 1, self.rect.w, self.rect.h).colliderect(block.rect):
                     self.on_ground = True
-
-
 
 
     # def shoot_fireball(self, core, x, y, move_direction):
